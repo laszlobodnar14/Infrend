@@ -25,4 +25,21 @@ router.get("/:gepId",asyncHandler(async (req, res) => {
   res.send(geps);
 }))
 
+router.post("/gepregister", asyncHandler(async (req, res) => {
+  const { name, marka, tipus, teljesitmeny, suly, berletidij, letet } = req.body;
+
+  const newGep = new GepModel({
+    name,
+    marka,
+    tipus,
+    teljesitmeny,
+    suly,
+    berletidij,
+    letet
+  });
+
+  const createdGep = await newGep.save();
+  res.status(201).send(createdGep);
+}));
+
 export default router;

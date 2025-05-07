@@ -2,11 +2,13 @@
 export const BASE_URL = 'http://localhost:5000';
 
 export const GEPS_URL = `${BASE_URL}/api/geps`;
+export const GEPS_REGISTER_URL = `${BASE_URL}/api/geps/gepregister`;
 export const GEPS_BY_ID_URL = `${GEPS_URL}/`;
 
 
 export const USER_LOGIN_URL =`${BASE_URL}/api/users/login`;
 export const USER_REGISTER_URL = `${BASE_URL}/api/users/register`;
+export const USER_ADJUST_URL = `${BASE_URL}/api/users/`;
 
 
 export const ORDERS_URL = `${BASE_URL}/api/orders`;

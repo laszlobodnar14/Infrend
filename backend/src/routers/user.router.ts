@@ -1,11 +1,11 @@
-import {sample_gep, sample_users} from '../data';
-import jwt from 'jsonwebtoken';
+import {sample_users} from '../data';
+import jwt, {verify} from 'jsonwebtoken';
 import {Router} from 'express';
 import asyncHandler from 'express-async-handler';
-import {GepModel} from '../models/gep.model';
 import {User, UserModel} from '../models/user.model';
 import {HTTP_BAD_REQUEST} from '../constants/http_status';
 import bcrypt from 'bcryptjs';
+
 
 
 const router = Router();
@@ -62,6 +62,32 @@ router.post("/login", asyncHandler(async (req, res) => {
     res.status(HTTP_BAD_REQUEST).send("Username or password is incorrect");
   }
 }));
+
+router.put("/:id", asyncHandler(async (req, res) => {
+  const userId = req.params.id;
+  const { name, ambassador, email, taxnum, address, password } = req.body;
+
+  const user = await UserModel.findById(userId);
+  if (!user) {
+    res.status(404).send("User not found");
+    return;
+  }
+
+  user.name = name;
+  user.ambassador = ambassador;
+  user.email = email;
+  user.taxnum = taxnum;
+  user.address = address;
+
+  if (password && password.length >= 6) {
+    user.password = await bcrypt.hash(password, 10);
+  }
+
+  await user.save();
+  res.send(generateTokenResponse(user));
+}));
+
+
 
 
 

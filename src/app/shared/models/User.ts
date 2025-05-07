@@ -7,6 +7,7 @@ password!: string;
 taxnum!: number;
 address!: string;
 token!: string;
+balance!: number;
 isAdmin!: boolean;
 
 

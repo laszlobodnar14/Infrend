@@ -8,6 +8,9 @@ import {CheckoutPageComponent} from './checkout-page/checkout-page.component';
 import {AuthGuard} from './auth/guards/auth.guard';
 import {PaymentPageComponent} from './payment-page/payment-page.component';
 import {OrderTrackPageComponent} from './order-track-page/order-track-page.component';
+import {ProfilePageComponent} from './profile-page/profile-page.component';
+import {ProfileAdjustPageComponent} from './profile-adjust-page/profile-adjust-page.component';
+import {GepRegisterPageComponent} from './gep-register-page/gep-register-page.component';
 
 export const routes: Routes = [
   {path: '', component:HomeComponent},
@@ -17,5 +20,8 @@ export const routes: Routes = [
   {path: 'register',component:RegisterPageComponent},
   {path: 'checkout',component: CheckoutPageComponent, canActivate: [AuthGuard]},
   {path: 'payment',component: PaymentPageComponent, canActivate: [AuthGuard]},
-  {path: 'track/:orderId',component: OrderTrackPageComponent, canActivate: [AuthGuard]}
+  {path: 'track/:orderId',component: OrderTrackPageComponent, canActivate: [AuthGuard]},
+  {path: 'profile',component: ProfilePageComponent, canActivate: [AuthGuard]},
+  {path: 'adjust',component: ProfileAdjustPageComponent, canActivate: [AuthGuard]},
+  {path: 'gepregister',component: GepRegisterPageComponent, canActivate: [AuthGuard]}
 ];

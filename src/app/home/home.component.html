@@ -29,3 +29,9 @@
     </a>
   </li>
 </ul>
+<div *ngIf="userService.currentUser.isAdmin">
+  <a routerLink="/gepregister">
+    <default-button text="Gep felvetele"></default-button>
+  </a>
+</div>
+
