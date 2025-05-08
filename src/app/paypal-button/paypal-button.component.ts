@@ -6,7 +6,7 @@ import {CartService} from '../services/cart.service';
 import {Router} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
 
-//window.paypal
+
 declare var paypal: any;
 
 @Component({

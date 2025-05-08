@@ -17,7 +17,10 @@ export class OrderService {
   constructor(private http: HttpClient) { }
 
   create(order:order){
-    return this.http.post<order>(ORDERS_CREATE_URL, order);
+
+    return this.http.post<order>(ORDERS_CREATE_URL, order,);
+
+
   }
 
   getNewOrderForCurrentUser():Observable<order>{
@@ -30,6 +33,9 @@ export class OrderService {
 
   trackOrderById(id:number):Observable<order>{
     return this.http.get<order>(ORDER_TRACK_URL + id);
+  }
+  createOrder(order: order): Observable<order> {
+    return this.http.post<order>(ORDERS_CREATE_URL, order);
   }
 
 

@@ -9,11 +9,11 @@ import asyncHandler from 'express-async-handler';
 const router = Router();
 router.use(auth);
 
-router.post('/create',
-  asyncHander(async (req:any, res:any) => {
+router.post('/create', asyncHandler(async (req: any, res: any) => {
+  try {
     const requestOrder = req.body;
 
-    if(requestOrder.items.length <= 0){
+    if (requestOrder.items.length <= 0) {
       res.status(HTTP_BAD_REQUEST).send('Cart Is Empty!');
       return;
     }
@@ -23,13 +23,18 @@ router.post('/create',
       status: OrderStatus.NEW
     });
 
-    const newOrder = new OrderModel({...requestOrder,user: req.user.id});
+    const newOrder = new OrderModel({ ...requestOrder, user: req.user.id });
     console.log('Request Order:', JSON.stringify(requestOrder, null, 2));
 
     await newOrder.save();
+
     res.send(newOrder);
-  })
-)
+  } catch (error) {
+    console.error('Error while creating the order:', error);
+    res.status(500).send('Server Error: Unable to create order');
+  }
+}));
+
 router.post('/pay', asyncHander( async (req:any, res) => {
   const {paymentId} = req.body;
   const order= await getNewOrderForCurrentUser(req);

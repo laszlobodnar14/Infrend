@@ -9,6 +9,9 @@ export const GEPS_BY_ID_URL = `${GEPS_URL}/`;
 export const USER_LOGIN_URL =`${BASE_URL}/api/users/login`;
 export const USER_REGISTER_URL = `${BASE_URL}/api/users/register`;
 export const USER_ADJUST_URL = `${BASE_URL}/api/users/`;
+export const USER_UPDATE_BALANCE_URL = BASE_URL + '/api/users/:id/balance';
+export const USER_UPDATE_BALANCE_ON_PAY_URL = `${BASE_URL}/api/users/balanceonpay/:id`;
+
 
 
 export const ORDERS_URL = `${BASE_URL}/api/orders`;

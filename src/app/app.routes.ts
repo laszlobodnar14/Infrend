@@ -11,6 +11,7 @@ import {OrderTrackPageComponent} from './order-track-page/order-track-page.compo
 import {ProfilePageComponent} from './profile-page/profile-page.component';
 import {ProfileAdjustPageComponent} from './profile-adjust-page/profile-adjust-page.component';
 import {GepRegisterPageComponent} from './gep-register-page/gep-register-page.component';
+import {ProfileBalanceUpdatePageComponent} from './profile-balance-update-page/profile-balance-update-page.component';
 
 export const routes: Routes = [
   {path: '', component:HomeComponent},
@@ -23,5 +24,6 @@ export const routes: Routes = [
   {path: 'track/:orderId',component: OrderTrackPageComponent, canActivate: [AuthGuard]},
   {path: 'profile',component: ProfilePageComponent, canActivate: [AuthGuard]},
   {path: 'adjust',component: ProfileAdjustPageComponent, canActivate: [AuthGuard]},
-  {path: 'gepregister',component: GepRegisterPageComponent, canActivate: [AuthGuard]}
+  {path: 'gepregister',component: GepRegisterPageComponent, canActivate: [AuthGuard]},
+  {path: 'balanceadjust',component: ProfileBalanceUpdatePageComponent, canActivate: [AuthGuard]}
 ];

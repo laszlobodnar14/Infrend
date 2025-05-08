@@ -7,6 +7,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { TextInputComponent } from '../text-input/text-input.component';
 import { TitleComponent } from '../title/title.component';
 import { PaypalButtonComponent } from '../paypal-button/paypal-button.component';
+import {PayWithBalanceButtonComponent} from '../pay-with-balance-button/pay-with-balance-button.component';
 
 @Component({
   selector: 'app-payment-page',
@@ -15,7 +16,9 @@ import { PaypalButtonComponent } from '../paypal-button/paypal-button.component'
     OrderItemsListComponent,
     ReactiveFormsModule,
     TitleComponent,
-    PaypalButtonComponent
+    PaypalButtonComponent,
+    PayWithBalanceButtonComponent
+
   ],
   templateUrl: './payment-page.component.html',
   styleUrl: './payment-page.component.css'
