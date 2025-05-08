@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {BehaviorSubject, Observable, tap} from 'rxjs';
 import {User} from '../shared/models/User';
 import {IUserLogin} from '../shared/interfaces/IUserLogin';
-import {BASE_URL, USER_LOGIN_URL, USER_REGISTER_URL} from '../shared/constants/urls';
+import {BASE_URL, USER_LOGIN_URL, USER_REGISTER_URL, USER_UPDATE_BALANCE_URL} from '../shared/constants/urls';
 import {HttpClient} from '@angular/common/http';
 import {ToastrService} from 'ngx-toastr';
 import {IUserRegister} from '../shared/interfaces/IUserRegister';
@@ -55,6 +55,18 @@ export class UserService {
         }
       })
     )
+  }
+
+  updateBalance(newBalance: number): Observable<any> {
+    const userId = this.currentUser.id;
+    return this.http.put(USER_UPDATE_BALANCE_URL.replace(':id', userId), { balance: newBalance }).pipe(
+      tap(() => {
+
+        const updatedUser = { ...this.currentUser, balance: newBalance };
+        this.setUserToLocalStorage(updatedUser);
+        this.userSubject.next(updatedUser);
+      })
+    );
   }
 
   logout() {

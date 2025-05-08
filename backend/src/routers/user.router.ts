@@ -39,7 +39,7 @@ router.post('/register',asyncHandler(async (req, res) => {
     taxnum,
     address,
     isAdmin: false,
-    balance: 15000
+    balance: 15
 
   }
   const dbUser = await UserModel.create(newUser);
@@ -87,7 +87,21 @@ router.put("/:id", asyncHandler(async (req, res) => {
   res.send(generateTokenResponse(user));
 }));
 
+router.put("/:id/balance", asyncHandler(async (req, res) => {
+  const userId = req.params.id;
+  const { balance } = req.body;
 
+  const user = await UserModel.findById(userId);
+  if (!user) {
+    res.status(404).send("User not found");
+    return;
+  }
+
+  user.balance = balance;
+  await user.save();
+
+  res.send({ message: "Balance updated", balance: user.balance });
+}));
 
 
 
